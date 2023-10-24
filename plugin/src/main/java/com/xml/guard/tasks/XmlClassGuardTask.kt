@@ -166,13 +166,18 @@ open class XmlClassGuardTask @Inject constructor(
             }
 
             else -> {
-                replaceText = replaceText.replaceWords(rawPath, obfuscatePath)  //替换{包名+类名}
-                    .replaceWords("$rawPackage.*", "$obfuscatePackage.*")
-                //替换成功或已替换
-                if (replaceText != rawText || replaceText.contains("$obfuscatePackage.*")) {
-                    //rawFile 文件内有引用 rawName 类，则需要替换类名
-                    replaceText = replaceText.replaceWords(rawName, obfuscateName)
+                try {
+                    replaceText = replaceText.replaceWords(rawPath, obfuscatePath)  //替换{包名+类名}
+                        .replaceWords("$rawPackage.*", "$obfuscatePackage.*")
+                    //替换成功或已替换
+                    if (replaceText != rawText || replaceText.contains("$obfuscatePackage.*")) {
+                        //rawFile 文件内有引用 rawName 类，则需要替换类名
+                        replaceText = replaceText.replaceWords(rawName, obfuscateName)
+                    }
+                }catch (e : Exception){
+                    println("replaceText-> rawFile:${rawFile.absolutePath} , rawText:$rawText , rawPath:$rawPath, obfuscatePath:$obfuscatePath")
                 }
+
             }
         }
         return replaceText

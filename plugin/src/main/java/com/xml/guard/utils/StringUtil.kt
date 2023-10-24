@@ -54,6 +54,8 @@ fun String.replaceWords(
     ignoreCase: Boolean = false
 ): String {
 
+
+
     var occurrenceIndex: Int = indexOf(oldValue, 0, ignoreCase)
     // FAST PATH: no match
     if (occurrenceIndex < 0) return this
@@ -66,15 +68,15 @@ fun String.replaceWords(
 
     var i = 0
     do {
-        try {
+        /*try {*/
             if (isWord(occurrenceIndex, oldValue)) {
                 stringBuilder.append(this, i, occurrenceIndex).append(newValue)
             } else {
                 stringBuilder.append(this, i, occurrenceIndex + oldValueLength)
             }
-        } catch (e: Exception) {
+        /*} catch (e: Exception) {
             println("replaceWords-> oldValue:$oldValue, newValue:$newValue , ignoreCase:$ignoreCase")
-        }
+        }*/
         i = occurrenceIndex + oldValueLength
         if (occurrenceIndex >= length) break
         occurrenceIndex = indexOf(oldValue, occurrenceIndex + searchStep, ignoreCase)
