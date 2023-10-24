@@ -74,7 +74,6 @@ fun String.replaceWords(
             }
         } catch (e: Exception) {
             println("replaceWords-> oldValue:$oldValue, newValue:$newValue , ignoreCase:$ignoreCase")
-
         }
         i = occurrenceIndex + oldValueLength
         if (occurrenceIndex >= length) break
