@@ -46,10 +46,10 @@
           "name": "XmlClassOk-1.2.4.jar",
           "url": "XmlClassOk-1.2.4.jar",
           "size": 70819,
-          "sha512": "a44322e203b906da535ab22a1c22cc6c72c24ab28e09dee7f5589da08549582c48db2d8f5bd14d468285293ee44b1f4da0d8cc1cf9e71f59ee455d0568ca4279",
-          "sha256": "c0425dccf9857fa5474dbf09bfcb588162da060dd2f1cb1952b87d39f921750c",
-          "sha1": "53e4fd88deb8a39bdeba24f452ec725845946717",
-          "md5": "cfcde720aaa89e93448a5a5f2d8333d9"
+          "sha512": "3e8304a3f11e8c1e7e3fcfd637caf26be25fa20ad3743315691c12e922edab1e745b527704f16095cf84d4d4a144f251e8d09941fe52e49746597dc83aef164c",
+          "sha256": "51651ad63b33d2a9cc7c74cfce590bf4fdc94ec541e9c85fea64cb99a584aa7a",
+          "sha1": "64f7b257512c634565957d371304c3f0cd06ca2b",
+          "md5": "83a9500ea9d08bd7492d9127f3b9e571"
         }
       ]
     },
@@ -85,10 +85,10 @@
           "name": "XmlClassOk-1.2.4.jar",
           "url": "XmlClassOk-1.2.4.jar",
           "size": 70819,
-          "sha512": "a44322e203b906da535ab22a1c22cc6c72c24ab28e09dee7f5589da08549582c48db2d8f5bd14d468285293ee44b1f4da0d8cc1cf9e71f59ee455d0568ca4279",
-          "sha256": "c0425dccf9857fa5474dbf09bfcb588162da060dd2f1cb1952b87d39f921750c",
-          "sha1": "53e4fd88deb8a39bdeba24f452ec725845946717",
-          "md5": "cfcde720aaa89e93448a5a5f2d8333d9"
+          "sha512": "3e8304a3f11e8c1e7e3fcfd637caf26be25fa20ad3743315691c12e922edab1e745b527704f16095cf84d4d4a144f251e8d09941fe52e49746597dc83aef164c",
+          "sha256": "51651ad63b33d2a9cc7c74cfce590bf4fdc94ec541e9c85fea64cb99a584aa7a",
+          "sha1": "64f7b257512c634565957d371304c3f0cd06ca2b",
+          "md5": "83a9500ea9d08bd7492d9127f3b9e571"
         }
       ]
     }
