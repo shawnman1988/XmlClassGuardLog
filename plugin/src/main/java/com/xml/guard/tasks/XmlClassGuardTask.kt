@@ -18,6 +18,7 @@ import com.xml.guard.utils.replaceWords
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
+import org.gradle.internal.impldep.com.google.gson.JsonObject
 import java.io.File
 import javax.inject.Inject
 
@@ -138,6 +139,8 @@ open class XmlClassGuardTask @Inject constructor(
         rawPath: String,
         obfuscatePath: String,
     ): String {
+        println("replaceText-> rawFile:${rawFile.absolutePath} , rawText:$rawText , rawPath:$rawPath, obfuscatePath:$obfuscatePath")
+
         val rawIndex = rawPath.lastIndexOf(".")
         val rawPackage = rawPath.substring(0, rawIndex)
         val rawName = rawPath.substring(rawIndex + 1)

@@ -53,6 +53,8 @@ fun String.replaceWords(
     newValue: String,
     ignoreCase: Boolean = false
 ): String {
+    println("replaceWords-> oldValue:$oldValue, newValue:$newValue , ignoreCase:$ignoreCase")
+
     var occurrenceIndex: Int = indexOf(oldValue, 0, ignoreCase)
     // FAST PATH: no match
     if (occurrenceIndex < 0) return this
@@ -78,6 +80,8 @@ fun String.replaceWords(
 }
 
 fun String.isWord(index: Int, oldValue: String): Boolean {
+    println("isWord-> index:$index, oldValue:$oldValue")
+
     val firstChar = oldValue[0].code
     if (index > 0 && (firstChar in 65..90 || firstChar == 95 || firstChar in 97..122)) {
         val prefix = get(index - 1).code
