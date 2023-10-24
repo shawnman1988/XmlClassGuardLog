@@ -4,9 +4,15 @@ publishing {
     publications {
         release(MavenPublication) {
             from components.java
-            groupId 'com.github.liujingxing'
-            artifactId 'XmlClassGuard'
+            groupId 'com.github.test'
+            artifactId 'XmlClassOk'
             version "$plugin_version"
+        }
+    }
+    repositories {
+        maven {
+            // 生成的插件位置
+            url = uri('../repo')
         }
     }
 }
