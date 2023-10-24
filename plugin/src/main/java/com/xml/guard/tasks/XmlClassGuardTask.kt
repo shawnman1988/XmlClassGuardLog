@@ -139,7 +139,6 @@ open class XmlClassGuardTask @Inject constructor(
         rawPath: String,
         obfuscatePath: String,
     ): String {
-        println("replaceText-> rawFile:${rawFile.absolutePath} , rawText:$rawText , rawPath:$rawPath, obfuscatePath:$obfuscatePath")
 
         val rawIndex = rawPath.lastIndexOf(".")
         val rawPackage = rawPath.substring(0, rawIndex)
