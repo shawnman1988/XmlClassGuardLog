@@ -174,8 +174,10 @@ open class XmlClassGuardTask @Inject constructor(
                         //rawFile 文件内有引用 rawName 类，则需要替换类名
                         replaceText = replaceText.replaceWords(rawName, obfuscateName)
                     }
-                }catch (e : Exception){
+                } catch (e: Exception) {
+
                     println("replaceText-> rawFile:${rawFile.absolutePath} , rawText:$rawText , rawPath:$rawPath, obfuscatePath:$obfuscatePath")
+                    return replaceText;
                 }
 
             }
