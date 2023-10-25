@@ -76,6 +76,10 @@ class Mapping {
                     File(file.absolutePath.replace(rawRelativePath, obfuscateRelativePath))
                 if (!newFile.exists()) newFile.parentFile.mkdirs()
                 if (file.renameTo(newFile)) {
+                    println("classMappingAdd -> key :${newFile} , value:${obfuscatePath}")
+                    if(rawClassPath == "component.instrument."){
+                        println("异常 -> key :${newFile} , value:${obfuscatePath}")
+                    }
                     classMapped[rawClassPath] = obfuscatePath
 
                     //处理顶级类、方法及变量
