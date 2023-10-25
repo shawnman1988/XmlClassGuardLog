@@ -95,60 +95,9 @@ public class ResourceUtils {
      * @throws Exception
      */
     public static Bitmap readDrawable(Context context, int resId) throws Exception {
-        if (BuildConfig.DEBUG) {
-            LoggerKt.printDebug("ResourceUtils", "readDrawable start time:" + System.currentTimeMillis());
-        }
+
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId);
-        if (bitmap == null) {
-            if (BuildConfig.DEBUG) {
-                LoggerKt.printDebug("ResourceUtils", "readDrawable bitmap is null,need to decrypt");
-            }
-            InputStream resIs = null;
-            InputStream bitIs = null;
-            try {
-                final TypedValue value = new TypedValue();
-                resIs = context.getResources().openRawResource(+resId, value);
-                if (BuildConfig.DEBUG) {
-                    LoggerKt.printDebug("ResourceUtils", "readDrawable size:" + resIs.available());
-                }
-                byte data[] = new byte[resIs.available()];
-                // Read the array
-                resIs.read(data);
-                int i = 0;
-                // Performing an XOR operation on each value of
-                // byte array due to which every value of Image
-                // will change.
-                for (byte b : data) {
-                    data[i] = (byte) (b ^ BaseProguardString.DRAWABLE_ENCRYPT_KEY);
-                    i++;
-                }
 
-                bitIs = new ByteArrayInputStream(data);
-                bitmap = BitmapFactory.decodeResourceStream(context.getResources(), value, bitIs, null, null);
-//                bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
-
-                resIs.close();
-                bitIs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (resIs != null) {
-                        resIs.close();
-                    }
-                    if (bitIs != null) {
-                        bitIs.close();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        if (bitmap != null) {
-
-        } else {
-            throw new Exception(BaseProguardString.READ_DRAWABLE_ERROR + resId);
-        }
 
         return bitmap;
 
