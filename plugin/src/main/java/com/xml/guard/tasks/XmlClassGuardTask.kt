@@ -48,6 +48,9 @@ open class XmlClassGuardTask @Inject constructor(
         androidProjects.forEach { handleResDir(it) }
         //2、仅修改文件名及文件路径，返回本次修改的文件
         val classMapping = mapping.obfuscateAllClass(project, variantName)
+        classMapping.forEach {
+            println("classMapping -> key :${it.key} , value:${it.value}")
+        }
         if (hasNavigationPlugin && fragmentDirectionList.isNotEmpty()) {
             fragmentDirectionList.forEach {
                 classMapping["${it}Directions"] = "${classMapping[it]}Directions"
@@ -175,7 +178,6 @@ open class XmlClassGuardTask @Inject constructor(
                         replaceText = replaceText.replaceWords(rawName, obfuscateName)
                     }
                 } catch (e: Exception) {
-
                     println("replaceText-> rawFile:${rawFile.absolutePath} , rawText:$rawText , rawPath:$rawPath, obfuscatePath:$obfuscatePath")
                     return replaceText;
                 }
