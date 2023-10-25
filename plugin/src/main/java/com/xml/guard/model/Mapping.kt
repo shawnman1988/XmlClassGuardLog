@@ -75,13 +75,21 @@ class Mapping {
                 val newFile =
                     File(file.absolutePath.replace(rawRelativePath, obfuscateRelativePath))
                 if (!newFile.exists()) newFile.parentFile.mkdirs()
-                if (file.renameTo(newFile)) {
-                    println("classMappingAdd -> key :${newFile} , value:${obfuscatePath}")
-                    if(rawClassPath == "component.instrument."){
-                        println("异常 -> key :${newFile} , value:${obfuscatePath}")
-                    }
-                    classMapped[rawClassPath] = obfuscatePath
 
+                var isNoInline = true;
+                if (file.name.endsWith("kt")) {
+                    try {
+                        var content = file.readText()
+                        if (content.contains("inline fun")) {
+                            println("inline 跳过 -> key :${newFile} , value:${obfuscatePath}")
+                            isNoInline = false;
+                        }
+                    } catch (t: Throwable) {
+                        throw IllegalArgumentException("$file parser fail", t)
+                    }
+                }
+                if (file.renameTo(newFile) && isNoInline) {
+                    classMapped[rawClassPath] = obfuscatePath
                     //处理顶级类、方法及变量
                     val obfuscateDir = obfuscatePath.getDirPath()
                     val filename = file.name.removeSuffix()
@@ -89,13 +97,13 @@ class Mapping {
                     val jvmName = ktParser.jvmName
                     if (jvmName != null && jvmName != filename) {
                         classMapped["$rawDir.$jvmName"] = "$obfuscateDir.$jvmName"
-                    } else if (jvmName == null &&
-                        (ktParser.topFunNames.isNotEmpty() || ktParser.topFieldNames.isNotEmpty())
-                    ) {
+                    } else if (jvmName == null && (ktParser.topFunNames.isNotEmpty() || ktParser.topFieldNames.isNotEmpty())) {
                         classMapped["${rawClassPath}Kt"] = "${obfuscatePath}Kt"
                     }
                     ktParser.getTopClassOrFunOrFieldNames().forEach {
-                        classMapped["$rawDir.$it"] = "$obfuscateDir.$it"
+                        if (it != "") {
+                            classMapped["$rawDir.$it"] = "$obfuscateDir.$it"
+                        }
                     }
                 }
             }
